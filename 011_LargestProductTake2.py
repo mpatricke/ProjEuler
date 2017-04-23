@@ -10,9 +10,16 @@ import os
 starttime = datetime.now()
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
 curPath = os.path.dirname(__file__)
-newPath = os.path.relpath('Data/011_LargeGrid.txt', curPath)
+print curPath
+
+# don't need this:
+#curPath = os.path.dirname(__file__)
+#newPath = os.path.relpath('Data/011_LargeGrid.txt', curPath)
 #newPath = os.path.relpath('Data/011_LargeGridTest.txt', curPath)
+# this works just as well:
+newPath = 'Data/011_LargeGrid.txt'
 
 adjNoCount = 4
 rowData = []
@@ -24,7 +31,6 @@ with open(newPath) as dataFile:
         rowCount += 1
         rowData.append([int(i) for i in line.rstrip('\n').split(" ")])
 
-# what next
 rowLen = len(rowData[rowCount-1])
 
 for i in range(0,rowLen):
