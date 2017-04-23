@@ -10,18 +10,21 @@ import os
 starttime = datetime.now()
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+curPath = os.path.dirname(__file__)
+newPath = os.path.relpath('Data/011_LargeGrid.txt', curPath)
+#newPath = os.path.relpath('Data/011_LargeGridTest.txt', curPath)
 
 adjNoCount = 4
 rowData = []
 numSeq = [0]*adjNoCount
 rowCount = rowLen = maxProd = iMax = jMax = prodNxt = iterCount = 0
 
-#with open('011LargeGridTest.txt') as dataFile:
-with open('011LargeGrid.txt') as dataFile:
+with open(newPath) as dataFile:
     for line in dataFile:
         rowCount += 1
         rowData.append([int(i) for i in line.rstrip('\n').split(" ")])
 
+# what next
 rowLen = len(rowData[rowCount-1])
 
 for i in range(0,rowLen):
@@ -71,4 +74,5 @@ print "The maximum product of any",adjNoCount,"adjacent numbers in the",rowLen,"
 print "Starting",maxProdDir,"from cell", iMax+1,",", jMax+1,": the product of", numSeq
 print
 print "Program:       ", os.path.abspath(__file__)
+print "Data file:        ", newPath
 print "Execution time:", datetime.now() - starttime,"secs.; found in", iterCount,"cycles."
